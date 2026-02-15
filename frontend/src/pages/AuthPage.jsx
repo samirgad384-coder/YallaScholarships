@@ -1,38 +1,91 @@
-import { Link } from 'react-router-dom';
 import { useMemo, useState } from 'react';
+
+const highlights = [
+  { label: 'طالب مسجل', value: '150K+' },
+  { label: 'منحة محدثة', value: '20K+' },
+  { label: 'دولة', value: '75+' },
+];
+
+const benefits = [
+  'فلترة ذكية حسب الدولة والتخصص والميزانية.',
+  'ترشيحات شخصية على أساس ملفك الأكاديمي.',
+  'تنبيهات فورية قبل مواعيد إغلاق المنح.',
+  'روابط تقديم موثوقة وخطوات واضحة لكل منحة.',
+];
 
 export default function AuthPage() {
   const [mode, setMode] = useState('signup');
   const isSignup = mode === 'signup';
 
   const subtitle = useMemo(
-    () => (isSignup ? 'أنشئ حسابك وابدأ التقديم على أفضل المنح.' : 'أهلاً بعودتك! سجل دخولك لاستكمال رحلتك.'),
+    () =>
+      isSignup
+        ? 'أنشئ حسابك وابدأ خطة البحث الذكية الآن.'
+        : 'أهلاً بعودتك! أكمل رحلتك نحو المنحة المناسبة.',
     [isSignup]
   );
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-hero-light px-4 py-10 dark:bg-hero-dark">
-      <div className="glass w-full max-w-md rounded-3xl p-7">
-        <Link to="/" className="text-sm font-semibold text-brand-600">← الرجوع للصفحة الرئيسية</Link>
-        <h1 className="mt-4 text-2xl font-black">{isSignup ? 'إنشاء حساب جديد' : 'تسجيل الدخول'}</h1>
-        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{subtitle}</p>
+    <main className="auth-layout">
+      <section className="showcase-panel">
+        <span className="badge">من أقوى منصات المنح في العالم</span>
+        <h1>منح يلااا — وجهتك الأسرع لأقوى المنح العالمية</h1>
+        <p>
+          نحن نبني تجربة متكاملة للطلاب العرب: اكتشف منح ممولة بالكامل، قارن الفرص
+          بسهولة، وخذ توصية دقيقة تساعدك على القبول أسرع.
+        </p>
 
-        <div className="mt-5 grid grid-cols-2 rounded-xl bg-brand-50 p-1 dark:bg-white/10">
-          <button type="button" onClick={() => setMode('signup')} className={`rounded-lg py-2 text-sm font-semibold ${isSignup ? 'bg-white text-brand-600 shadow dark:bg-slate-900' : ''}`}>
-            إنشاء حساب
-          </button>
-          <button type="button" onClick={() => setMode('login')} className={`rounded-lg py-2 text-sm font-semibold ${!isSignup ? 'bg-white text-brand-600 shadow dark:bg-slate-900' : ''}`}>
-            تسجيل دخول
-          </button>
+        <div className="stats-grid">
+          {highlights.map((item) => (
+            <article key={item.label} className="stat-card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </article>
+          ))}
         </div>
 
-        <form className="mt-5 space-y-3">
-          {isSignup && <input type="text" placeholder="الاسم الكامل" className="w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm dark:border-white/10 dark:bg-slate-900/70" />}
-          <input type="email" placeholder="البريد الإلكتروني" className="w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm dark:border-white/10 dark:bg-slate-900/70" />
-          <input type="password" placeholder="كلمة المرور" className="w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm dark:border-white/10 dark:bg-slate-900/70" />
-          <button type="submit" className="w-full rounded-xl bg-brand-600 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5">{isSignup ? 'ابدأ الآن' : 'دخول'}</button>
-        </form>
-      </div>
+        <ul className="benefits-list">
+          {benefits.map((benefit) => (
+            <li key={benefit}>{benefit}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="auth-panel">
+        <div className="auth-card">
+          <div className="auth-switch">
+            <button
+              className={isSignup ? 'active' : ''}
+              onClick={() => setMode('signup')}
+              type="button"
+            >
+              إنشاء حساب
+            </button>
+            <button
+              className={!isSignup ? 'active' : ''}
+              onClick={() => setMode('login')}
+              type="button"
+            >
+              تسجيل دخول
+            </button>
+          </div>
+
+          <h2>{isSignup ? 'ابدأ رحلتك الدراسية اليوم' : 'تسجيل الدخول'}</h2>
+          <p className="subtitle">{subtitle}</p>
+
+          <form className="auth-form">
+            {isSignup && <input placeholder="الاسم الكامل" type="text" />}
+            <input placeholder="البريد الإلكتروني" type="email" />
+            <input placeholder="كلمة المرور" type="password" />
+            {isSignup && <input placeholder="الدولة" type="text" />}
+            <button type="submit">{isSignup ? 'إنشاء الحساب' : 'دخول'}</button>
+          </form>
+
+          <p className="helper-text">
+            بالمتابعة أنت توافق على الشروط وسياسة الخصوصية الخاصة بمنح يلااا.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
