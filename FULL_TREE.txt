@@ -1,0 +1,162 @@
+.
+|____.gitignore
+|____FULL_TREE.txt
+|____LICENSE
+|____PROJECT_STRUCTURE.md
+|____README.md
+|____TREE_STRUCTURE.txt
+|____assets
+| |____data
+| | |____countries.json
+| | |____majors.json
+| | |____universities.json
+| |____design
+| | |____brand-guidelines.pdf
+| | |____logo.ai
+| | |____mockups.fig
+| |____{design,data}
+|____backend
+| |____.env
+| |____api
+| | |____controllers
+| | | |____auth_controller.py
+| | | |____scholarship_controller.py
+| | | |____telegram_controller.py
+| | | |____user_controller.py
+| | |____middleware
+| | | |____auth_middleware.py
+| | | |____error_handler.py
+| | | |____rate_limiter.py
+| | |____models
+| | | |____admin.py
+| | | |____application.py
+| | | |____rating.py
+| | | |____scholarship.py
+| | | |____user.py
+| | |____routes
+| | | |____admin.py
+| | | |____auth.py
+| | | |____scholarships.py
+| | | |____telegram.py
+| | | |____users.py
+| | |____services
+| | | |____email_service.py
+| | | |____matching_service.py
+| | | |____notification_service.py
+| | | |____telegram_service.py
+| |____config
+| | |____database.py
+| | |____settings.py
+| | |____telegram.py
+| |____database
+| | |____connection.py
+| | |____migrations
+| | | |____001_initial.sql
+| | | |____002_add_ratings.sql
+| | | |____003_add_admins.sql
+| | |____seeds
+| | | |____scholarships.json
+| |____main.py
+| |____requirements.txt
+| |____telegram_bot
+| | |____bot.py
+| | |____handlers.py
+| | |____keyboards.py
+| | |____messages.py
+| | |____utils.py
+| |____tests
+| | |____test_auth.py
+| | |____test_matching.py
+| | |____test_scholarships.py
+|____docker-compose.yml
+|____docs
+| |____API_DOCUMENTATION.md
+| |____DATABASE_SCHEMA.md
+| |____DEPLOYMENT_GUIDE.md
+| |____TELEGRAM_INTEGRATION.md
+| |____USER_GUIDE.md
+|____frontend
+| |____.env
+| |____index.html
+| |____package.json
+| |____public
+| | |____favicon.ico
+| | |____images
+| | | |____countries
+| | | |____icons
+| | | |____success-stories
+| | | |____universities
+| | |____manifest.json
+| | |____robots.txt
+| |____src
+| | |____App.jsx
+| | |____components
+| | | |____auth
+| | | | |____LoginForm.jsx
+| | | | |____SignupForm.jsx
+| | | | |____SocialAuth.jsx
+| | | | |____TelegramAuth.jsx
+| | | |____common
+| | | | |____Button.jsx
+| | | | |____Card.jsx
+| | | | |____Footer.jsx
+| | | | |____Header.jsx
+| | | | |____Loading.jsx
+| | | | |____Modal.jsx
+| | | |____dashboard
+| | | | |____ApplicationStatus.jsx
+| | | | |____RecommendedMatches.jsx
+| | | | |____SavedScholarships.jsx
+| | | | |____UserProfile.jsx
+| | | |____home
+| | | | |____CTASection.jsx
+| | | | |____CountriesSection.jsx
+| | | | |____FeaturesSection.jsx
+| | | | |____HeroSection.jsx
+| | | | |____StatsSection.jsx
+| | | | |____TestimonialsSection.jsx
+| | | | |____TrustBadges.jsx
+| | | |____scholarships
+| | | | |____FilterBar.jsx
+| | | | |____MatchScore.jsx
+| | | | |____ScholarshipCard.jsx
+| | | | |____ScholarshipsList.jsx
+| | | | |____SearchBar.jsx
+| | |____context
+| | | |____AuthContext.jsx
+| | | |____LanguageContext.jsx
+| | | |____ThemeContext.jsx
+| | |____hooks
+| | | |____useAuth.js
+| | | |____useScholarships.js
+| | | |____useTelegram.js
+| | |____main.jsx
+| | |____pages
+| | | |____AboutPage.jsx
+| | | |____AuthPage.jsx
+| | | |____ContactPage.jsx
+| | | |____DashboardPage.jsx
+| | | |____HomePage.jsx
+| | | |____NotFoundPage.jsx
+| | | |____PrivacyPage.jsx
+| | | |____ScholarshipDetailPage.jsx
+| | | |____ScholarshipsPage.jsx
+| | | |____TermsPage.jsx
+| | |____router.jsx
+| | |____styles
+| | | |____animations.css
+| | | |____global.css
+| | | |____responsive.css
+| | | |____variables.css
+| | |____utils
+| | | |____api.js
+| | | |____constants.js
+| | | |____helpers.js
+| | | |____telegram.js
+| | | |____validators.js
+| |____tailwind.config.js
+| |____vite.config.js
+|____scripts
+| |____backup.sh
+| |____deploy.sh
+| |____seed_database.py
