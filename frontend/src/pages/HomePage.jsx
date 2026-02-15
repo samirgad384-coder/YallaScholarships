@@ -6,19 +6,17 @@ import {
   BrainCircuit,
   Check,
   Compass,
-  Menu,
   Moon,
   Sparkles,
   Sun,
-  X,
   Zap,
 } from 'lucide-react';
 
 const features = [
-  { icon: BrainCircuit, title: 'بحث بالذكاء الاصطناعي', text: 'ابحث بأسئلة طبيعية واحصل على نتائج دقيقة وفورية.' },
-  { icon: Compass, title: 'مطابقة ذكية', text: 'خوارزمية تقييم متقدمة حسب ملفك الأكاديمي الحقيقي.' },
-  { icon: BellRing, title: 'تنبيهات لحظية', text: 'إشعارات فورية قبل مواعيد الإغلاق بدون أي تفويت.' },
-  { icon: Zap, title: 'مقارنة سريعة', text: 'قارن التمويل والمتطلبات وفرص القبول في ثوانٍ.' },
+  { icon: BrainCircuit, title: 'بحث بالذكاء الاصطناعي', text: 'ابحث بأسئلة طبيعية واحصل على أفضل النتائج فورًا.' },
+  { icon: Compass, title: 'مطابقة ذكية', text: 'خوارزمية تقييم دقيقة حسب مستواك واهتماماتك.' },
+  { icon: BellRing, title: 'تنبيهات فورية', text: 'لا تفوت أي موعد نهائي عبر إشعارات لحظية.' },
+  { icon: Zap, title: 'مقارنة فورية', text: 'قارن التمويل والمتطلبات وفرص القبول بسهولة.' },
 ];
 
 const scholarships = [
@@ -31,7 +29,7 @@ const scholarships = [
 const testimonials = [
   { name: 'سارة أحمد', role: 'طب بشري - مصر', quote: 'وفرت عليّ شهور بحث. حصلت على قبول في أقل من 6 أسابيع.' },
   { name: 'محمد عادل', role: 'هندسة - المغرب', quote: 'واجهة راقية ونتائج دقيقة. أفضل منصة منح جربتها.' },
-  { name: 'لينا خالد', role: 'علوم بيانات - الأردن', quote: 'خطة Premium غيّرت طريقة التقديم بالكامل.' },
+  { name: 'لينا خالد', role: 'علوم بيانات - الأردن', quote: 'الـ Premium فعليًا غيّر طريقة تقديمي بالكامل.' },
 ];
 
 function Counter({ value, label, suffix = '+' }) {
@@ -46,7 +44,7 @@ function Counter({ value, label, suffix = '+' }) {
       ([entry]) => {
         if (!entry.isIntersecting) return;
         let start = 0;
-        const step = Math.max(1, Math.ceil(value / 40));
+        const step = Math.max(1, Math.ceil(value / 45));
         const timer = setInterval(() => {
           start += step;
           if (start >= value) {
@@ -55,10 +53,10 @@ function Counter({ value, label, suffix = '+' }) {
             return;
           }
           setDisplay(start);
-        }, 25);
+        }, 28);
         observer.disconnect();
       },
-      { threshold: 0.35 }
+      { threshold: 0.3 }
     );
 
     observer.observe(node);
@@ -67,10 +65,7 @@ function Counter({ value, label, suffix = '+' }) {
 
   return (
     <div ref={ref} className="glass rounded-2xl p-6 text-center">
-      <p className="text-3xl font-black text-brand-600 dark:text-brand-100">
-        {display}
-        {suffix}
-      </p>
+      <p className="text-3xl font-black text-brand-600 dark:text-brand-100">{display}{suffix}</p>
       <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{label}</p>
     </div>
   );
@@ -79,13 +74,13 @@ function Counter({ value, label, suffix = '+' }) {
 export default function HomePage() {
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('yalla-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const shouldUseDark = saved ? saved === 'dark' : prefersDark;
     setIsDark(shouldUseDark);
+    document.documentElement.classList.toggle('dark', shouldUseDark);
   }, []);
 
   useEffect(() => {
@@ -94,7 +89,7 @@ export default function HomePage() {
   }, [isDark]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -113,95 +108,35 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-hero-light dark:bg-hero-dark">
-      <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:right-4 focus:top-4 focus:rounded-lg focus:bg-brand-600 focus:px-3 focus:py-2 focus:text-white">
-        تخطي إلى المحتوى
-      </a>
-
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-5'}`}>
         <div className="section-shell">
-          <div className={`rounded-2xl px-4 sm:px-5 ${scrolled ? 'glass shadow-xl' : ''}`}>
+          <div className={`rounded-2xl px-5 ${scrolled ? 'glass shadow-xl' : ''}`}>
             <div className="flex h-14 items-center justify-between">
               <p className="text-lg font-black tracking-tight">Yalla Scholarships</p>
-
               <nav className="hidden items-center gap-6 md:flex">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.id}
-                    href={`#${link.id}`}
-                    className="text-sm text-slate-600 transition hover:text-brand-600 dark:text-slate-300"
-                  >
+                  <a key={link.id} href={`#${link.id}`} className="text-sm text-slate-600 transition hover:text-brand-600 dark:text-slate-300">
                     {link.text}
                   </a>
                 ))}
               </nav>
-
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setIsDark((prev) => !prev)}
-                  className="glass rounded-xl p-2"
-                  type="button"
-                  aria-label="toggle theme"
-                >
+                <button onClick={() => setIsDark((p) => !p)} className="glass rounded-xl p-2" type="button" aria-label="theme toggle">
                   {isDark ? <Sun size={18} /> : <Moon size={18} />}
                 </button>
-
-                <Link
-                  to="/auth"
-                  className="hidden rounded-xl bg-brand-600 px-4 py-2 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5 md:inline-flex"
-                >
+                <Link to="/auth" className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5">
                   ابدأ مجانًا
                 </Link>
-
-                <button
-                  onClick={() => setMenuOpen((prev) => !prev)}
-                  type="button"
-                  className="glass rounded-xl p-2 md:hidden"
-                  aria-label="toggle mobile menu"
-                >
-                  {menuOpen ? <X size={18} /> : <Menu size={18} />}
-                </button>
               </div>
             </div>
-
-            {menuOpen && (
-              <div className="border-t border-slate-200/70 py-3 dark:border-white/10 md:hidden">
-                <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.id}
-                      href={`#${link.id}`}
-                      onClick={() => setMenuOpen(false)}
-                      className="rounded-lg px-2 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/5"
-                    >
-                      {link.text}
-                    </a>
-                  ))}
-                  <Link
-                    to="/auth"
-                    onClick={() => setMenuOpen(false)}
-                    className="mt-1 inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2 text-sm font-bold text-white"
-                  >
-                    ابدأ مجانًا
-                  </Link>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </header>
 
-      <main id="content" className="pt-28">
+      <main className="pt-28">
         <section className="section-shell relative overflow-hidden py-14 sm:py-20">
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 8, repeat: Infinity }}
-            className="absolute -left-10 top-16 h-44 w-44 rounded-full bg-violet-400/20 blur-3xl"
-          />
-          <motion.div
-            animate={{ y: [0, 16, 0] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -right-10 top-36 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl"
-          />
+          <motion.div animate={{ y: [0, -12, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute -left-10 top-16 h-44 w-44 rounded-full bg-violet-400/20 blur-3xl" />
+          <motion.div animate={{ y: [0, 16, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute -right-10 top-36 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
 
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
@@ -224,19 +159,12 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass rounded-3xl p-6"
-            >
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="glass rounded-3xl p-6">
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-300">لوحة توصية ذكية</p>
               <div className="mt-4 space-y-3">
                 {['منح ممولة بالكامل خلال 45 يوم', 'أفضل مطابقة لتخصص علوم البيانات', '3 منح أولوية حسب ملفك'].map((item) => (
                   <div key={item} className="flex items-center gap-3 rounded-xl bg-white/70 p-3 dark:bg-slate-900/60">
-                    <span className="rounded-lg bg-emerald-500/15 p-1 text-emerald-500">
-                      <Check size={16} />
-                    </span>
+                    <span className="rounded-lg bg-emerald-500/15 p-1 text-emerald-500"><Check size={16} /></span>
                     <span className="text-sm">{item}</span>
                   </div>
                 ))}
@@ -248,20 +176,11 @@ export default function HomePage() {
         <section id="features" className="section-shell py-12 sm:py-20">
           <h2 className="text-center text-3xl font-black sm:text-4xl">مزايا مصممة لنتائج أسرع</h2>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => {
+            {features.map((feature, i) => {
               const Icon = feature.icon;
               return (
-                <motion.article
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 26 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                  className="glass rounded-2xl p-5 transition hover:-translate-y-2 hover:shadow-xl"
-                >
-                  <span className="mb-4 inline-flex rounded-xl bg-brand-500/10 p-2 text-brand-600 dark:text-brand-200">
-                    <Icon />
-                  </span>
+                <motion.article key={feature.title} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-5 transition hover:-translate-y-2 hover:shadow-xl">
+                  <span className="mb-4 inline-flex rounded-xl bg-brand-500/10 p-2 text-brand-600 dark:text-brand-200"><Icon /></span>
                   <h3 className="font-bold">{feature.title}</h3>
                   <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{feature.text}</p>
                 </motion.article>
@@ -273,16 +192,9 @@ export default function HomePage() {
         <section id="how" className="section-shell py-12 sm:py-20">
           <h2 className="text-center text-3xl font-black sm:text-4xl">كيف تعمل المنصة؟</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {['أنشئ ملفك الأكاديمي', 'استقبل أفضل المنح المطابقة', 'قدّم بثقة عبر خطوات واضحة'].map((step, index) => (
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass relative rounded-2xl p-6"
-              >
-                <span className="text-5xl font-black text-brand-100 dark:text-brand-900">0{index + 1}</span>
+            {['أنشئ ملفك الأكاديمي', 'استقبل أفضل المنح المطابقة', 'قدّم بثقة عبر خطوات واضحة'].map((step, i) => (
+              <motion.div key={step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass relative rounded-2xl p-6">
+                <span className="text-5xl font-black text-brand-100 dark:text-brand-900">0{i + 1}</span>
                 <p className="mt-2 font-semibold">{step}</p>
               </motion.div>
             ))}
@@ -290,23 +202,17 @@ export default function HomePage() {
         </section>
 
         <section id="scholarships" className="section-shell py-12 sm:py-20">
-          <div className="mb-7 flex items-end justify-between gap-3">
+          <div className="mb-7 flex items-end justify-between">
             <h2 className="text-3xl font-black sm:text-4xl">نماذج منح مميزة</h2>
-            <Link to="/auth" className="text-sm font-bold text-brand-600">
-              عرض الكل ←
-            </Link>
+            <Link to="/auth" className="text-sm font-bold text-brand-600">عرض الكل ←</Link>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {scholarships.map((item) => (
               <motion.article key={item.name} whileHover={{ y: -8 }} className="glass rounded-2xl p-5">
                 <p className="text-xs text-slate-500 dark:text-slate-300">{item.country}</p>
                 <h3 className="mt-2 text-lg font-bold">{item.name}</h3>
-                <p className="mt-4 text-sm">
-                  التمويل: <span className="font-semibold text-emerald-500">{item.funding}</span>
-                </p>
-                <p className="text-sm">
-                  آخر موعد: <span className="font-semibold">{item.deadline}</span>
-                </p>
+                <p className="mt-4 text-sm">التمويل: <span className="font-semibold text-emerald-500">{item.funding}</span></p>
+                <p className="text-sm">آخر موعد: <span className="font-semibold">{item.deadline}</span></p>
               </motion.article>
             ))}
           </div>
@@ -336,9 +242,7 @@ export default function HomePage() {
             <article className="relative rounded-3xl border border-brand-300 bg-gradient-to-b from-brand-600 to-brand-700 p-7 text-white shadow-glow">
               <span className="absolute -top-3 right-6 rounded-full bg-white px-3 py-1 text-xs font-bold text-brand-700">الأكثر اختيارًا</span>
               <p className="text-sm font-semibold text-brand-100">Premium</p>
-              <p className="mt-3 text-4xl font-black">
-                $12<span className="text-lg">/شهريًا</span>
-              </p>
+              <p className="mt-3 text-4xl font-black">$12<span className="text-lg">/شهريًا</span></p>
               <ul className="mt-5 space-y-2 text-sm text-brand-50">
                 <li>• مطابقة AI متقدمة</li>
                 <li>• تنبيهات لحظية غير محدودة</li>
@@ -351,11 +255,11 @@ export default function HomePage() {
         <section id="testimonials" className="section-shell py-12 sm:py-20">
           <h2 className="text-center text-3xl font-black sm:text-4xl">ماذا يقول طلابنا؟</h2>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <article key={item.name} className="glass rounded-2xl p-5">
-                <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">“{item.quote}”</p>
-                <p className="mt-4 font-bold">{item.name}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
+            {testimonials.map((t) => (
+              <article key={t.name} className="glass rounded-2xl p-5">
+                <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">“{t.quote}”</p>
+                <p className="mt-4 font-bold">{t.name}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
               </article>
             ))}
           </div>
@@ -364,9 +268,7 @@ export default function HomePage() {
         <section className="section-shell pb-16 pt-8 sm:pb-24">
           <div className="rounded-3xl bg-gradient-to-l from-slate-900 to-brand-700 p-10 text-center text-white">
             <h3 className="text-3xl font-black">جاهز تبدأ رحلتك نحو منحة أحلامك؟</h3>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-100">
-              انضم الآن لـ Yalla Scholarships وابدأ تجربة عالمية بمعيار Premium من اليوم الأول.
-            </p>
+            <p className="mx-auto mt-3 max-w-2xl text-slate-100">انضم الآن لـ Yalla Scholarships وابدأ تجربة عالمية بمعيار Premium من اليوم الأول.</p>
             <Link to="/auth" className="mt-6 inline-flex rounded-2xl bg-white px-6 py-3 font-bold text-slate-900 transition hover:-translate-y-1">
               ابدأ الآن مجانًا
             </Link>
@@ -382,19 +284,11 @@ export default function HomePage() {
           </div>
           <div>
             <p className="font-bold">المنصة</p>
-            <ul className="mt-2 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-              <li>المزايا</li>
-              <li>الأسعار</li>
-              <li>التحديثات</li>
-            </ul>
+            <ul className="mt-2 space-y-2 text-sm text-slate-600 dark:text-slate-300"><li>المزايا</li><li>الأسعار</li><li>التحديثات</li></ul>
           </div>
           <div>
             <p className="font-bold">الدعم</p>
-            <ul className="mt-2 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-              <li>مركز المساعدة</li>
-              <li>تواصل معنا</li>
-              <li>سياسة الخصوصية</li>
-            </ul>
+            <ul className="mt-2 space-y-2 text-sm text-slate-600 dark:text-slate-300"><li>مركز المساعدة</li><li>تواصل معنا</li><li>سياسة الخصوصية</li></ul>
           </div>
           <div>
             <p className="font-bold">تابعنا</p>
