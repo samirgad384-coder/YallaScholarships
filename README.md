@@ -1,78 +1,86 @@
-# 🎓 Menhayalla - منح يلااا
+# Menhayalla — منح يلااا
 
-<div align="center">
+> **Intelligent scholarship discovery platform** for students across the Arab world and beyond.
 
-**أفضل منصة لإيجاد المنح الدراسية العالمية**
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)](.)
+[![Telegram Bot](https://img.shields.io/badge/telegram-%40menhayallabot-2CA5E0?style=flat-square&logo=telegram)](https://t.me/menhayallabot)
+[![Stack](https://img.shields.io/badge/stack-React%20%2B%20Python-informational?style=flat-square)](.)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Telegram Bot](https://img.shields.io/badge/Telegram-Bot-blue.svg)](https://t.me/menhayallabot)
-[![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
-
-[الموقع الرسمي](https://menhayalla.com) • [البوت](https://t.me/menhayallabot) • [التوثيق](./docs/)
-
-</div>
+**[Website](https://menhayalla.com) · [Telegram Bot](https://t.me/menhayallabot) · [Docs](./docs/)**
 
 ---
 
-## 📋 نظرة عامة
+## Overview
 
-**منح يلااا** هي منصة ذكية متكاملة تساعد الطلاب في إيجاد المنح الدراسية المناسبة لهم بدقة 100%. 
-
-### ✨ المميزات الرئيسية:
-
-- 🎯 **مطابقة شخصية دقيقة**: نظام ذكي يحسب درجة التطابق
-- ⭐ **أفضل 5 منح**: مع روابط تقديم مباشرة
-- 🌍 **50+ دولة**: منح من جميع أنحاء العالم
-- 🤖 **بوت تليجرام**: @menhayallabot
-- 📱 **موقع ويب احترافي**: واجهة سهلة الاستخدام
-- 🔔 **4 قنوات دعم**: منح يومية + نصائح + تحديثات + قصص نجاح
+Menhayalla is a full-stack platform that matches students with the right scholarships through a precision scoring system. Rather than browsing hundreds of listings, users receive a ranked shortlist of their top 5 matches — complete with direct application links.
 
 ---
 
-## 🏗️ البنية التقنية
+## Features
 
-- **Frontend**: React.js + Vite + Tailwind CSS
-- **Backend**: Python (Flask/FastAPI) + PostgreSQL
-- **Telegram Bot**: python-telegram-bot
-- **DevOps**: Docker + Nginx
-
----
-
-## 📂 هيكل المشروع
-
-راجع [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) للتفاصيل الكاملة.
+| Feature | Description |
+|---|---|
+| **Smart Matching** | Scoring algorithm that calculates compatibility between a student's profile and each scholarship |
+| **Top 5 Scholarships** | Ranked results with direct application links — no manual filtering |
+| **Global Coverage** | Scholarships from 50+ countries |
+| **Telegram Bot** | Full functionality accessible via [@menhayallabot](https://t.me/menhayallabot) |
+| **Web Interface** | Clean, accessible UI for profile setup and scholarship browsing |
+| **4 Support Channels** | Daily scholarships · Tips · Platform updates · Success stories |
 
 ---
 
-## 🚀 التثبيت والتشغيل
+## Tech Stack
 
-### Frontend:
+| Layer | Technology |
+|---|---|
+| Frontend | React.js + Vite + Tailwind CSS |
+| Backend | Python (Flask / FastAPI) + PostgreSQL |
+| Telegram Bot | python-telegram-bot |
+| Infrastructure | Docker + Nginx |
+
+---
+
+## Project Structure
+
+See [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) for a full breakdown of the repository layout.
+
+---
+
+## Getting Started
+
+**Prerequisites:** Node.js ≥ 18, Python ≥ 3.10, Docker (optional)
+
+### Frontend
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### Backend:
+### Backend
+
 ```bash
 cd backend
 pip install -r requirements.txt
 python main.py
 ```
 
-### Docker:
+### Docker (recommended)
+
 ```bash
 docker-compose up -d
 ```
 
 ---
 
-## 📞 التواصل
+## Contact
 
-**المطور**: سمير جاد
-- **تليجرام**: [@ENG_GAD](https://t.me/ENG_GAD)
-- **البوت**: [@menhayallabot](https://t.me/menhayallabot)
+**Developer:** Samir Gad  
+**Telegram:** [@ENG_GAD](https://t.me/ENG_GAD)  
+**Bot:** [@menhayallabot](https://t.me/menhayallabot)
 
 ---
 
-**صُنع بـ ❤️ في مصر 🇪🇬**
+*Built with ❤️ in Egypt 🇪🇬*
